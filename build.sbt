@@ -2,7 +2,7 @@ name := "cucumberFramework"
 
 version := "0.1"
 
-scalaVersion := "2.13.2"
+scalaVersion := "2.13.5"
 
 scalacOptions ++= Seq("unchecked", "deprecation", "-feature")
 
@@ -15,5 +15,7 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.8" excludeAll ExclusionRule(organization = "org.seleniumhq.selenium"),
   "com.typesafe.play" %% "play-test" % "2.7.4" % Test,
   "io.cucumber" % "cucumber-junit" % "6.7.0" % "test",
-  "io.cucumber" % "cucumber-scala_2.13" % "6.7.0" % "test"
+  "io.cucumber" % "cucumber-scala_2.13" % "6.7.0" % "test",
+  "io.cucumber" % "gherkin" % "15.0.2"% "test",
+  "io.cucumber" % "cucumber-java" % "6.1.1"% "test"
 )
