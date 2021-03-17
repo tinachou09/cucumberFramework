@@ -3,6 +3,7 @@ package stepdef
 import io.cucumber.java.StepDefinitionAnnotation
 import pages.BasePage
 import io.cucumber.java.en.{And, Given, Then}
+import org.openqa.selenium.WebElement
 import org.scalatest.Assertion
 import pages.Inventorypage
 
@@ -19,7 +20,7 @@ class loginStep extends BasePage {
     goTo(url)
   }
 
-  @And("log in the page via entering the username and password$")
+  @And("^log in the page via entering the username and password$")
   def logIn = > {
     //username
     val usernameFieid = id("user-name")
@@ -32,7 +33,7 @@ class loginStep extends BasePage {
     usernameFieid.webElement.sendKeys(standardUsername)
 
     //password  -driver.findElement(By.className get replaced by cssSelector webbrowser
-    def getPasswordValue: String = cssSelector("login_password").webElement.getText
+    def getPasswordValue: String = cssSelector(".login_password").webElement.getText
 
     //convert the paragraph by using a break line and , then it convert to array and then covert into a list
     val password: String = getPasswordValue.split("\n").toList.apply(1)
@@ -50,8 +51,36 @@ class loginStep extends BasePage {
       case _ => throw new Exception(s"Page [${page}] is not found")
     }
 
-    currentUrl should be (landingpage)
+    currentUrl should be(landingpage)
   }
+
+  @And("""^the user adds '([^\"]*)' to the shopping cart$""")
+  def addTheItemToTheBasket(product: String): Unit = {
+    val list: List[String] = findAll(cssSelector(".inventory_item_name")).map(_.underlying.getText).toList
+    //fold -translate to single result- transformation
+    val listIndex: Int = list.zipWithIndex.foldLeft(0)((itemIdx, item) =>
+      // access element in tuple
+      //      product match {
+      //        case item._1 => item._2
+      //        case _ => itemIdx
+      //      }
+      if (product == item._1) item._2 else itemIdx
+    )
+
+//    val button: CssSelectorQuery = cssSelector(s"#inventory_container > div > div:nth-child(${listIndex + 1}) > div.pricebar > button")
+    val button: CssSelectorQuery = cssSelector(s"div.inventory_item:nth-child(${listIndex + 1}) button")
+    clickOn(button)
+  }
+
+  @Then("""^the user go to basket and check the '([^\"]*)' to the shopping cart$""")
+   def checkTheItemIntheBasket(product: String): Assertion = {
+    val basketItemId = id("shopping_cart_container")
+    clickOn(basketItemId)
+
+    val cartItem = cssSelector("div.inventory_item_name").webElement.getText
+    product should be(cartItem)
+  }
+
 
 
 }
