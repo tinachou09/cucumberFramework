@@ -9,7 +9,7 @@ import pages.Inventorypage
 
 
 @StepDefinitionAnnotation
-class loginStep extends BasePage {
+class loginStep extends  BasePage {
 
   //the reason that need to import cucumber java.en is because  dependency mismatches (Cucumber - Content Assistance in Feature file not working)
 
