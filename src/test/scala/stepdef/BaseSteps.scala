@@ -27,9 +27,9 @@ class BaseSteps extends ScalaDsl with EN with LazyLogging with BasePage  {
 
 
   private def takeScreenshot(scenario: Scenario, s: String, dr: WebDriver with TakesScreenshot): Unit = {
+
     val name = scenario.getName
 
-    /** For some reason, the After bit runs 5 times. The if clause prevents the driver from taking 5 screenshots **/
     if (!new java.io.File(s"./target/screenshots/$name$s.png").exists) {
       dr.manage().window().maximize()
       val scr = dr.getScreenshotAs(OutputType.FILE)
@@ -50,12 +50,6 @@ class BaseSteps extends ScalaDsl with EN with LazyLogging with BasePage  {
         takeScreenshot (scenario, "-page-on-failure",a )
         println (s"Failure Page : Failing")
         }
-//        ScreenshotUtility.takesScreenshot(result)
-//        val filesource: File = scenario.getId
-//        val destinationDir = new File("screenshot")
-//        FileUtils.copyFileToDirectory(filesource,destinationDir)
-//        setCaptureDir("target/screenshots")
-
 
       } else
         logger.info("pass")
