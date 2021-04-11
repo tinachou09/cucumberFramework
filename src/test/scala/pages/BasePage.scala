@@ -7,9 +7,10 @@ import org.scalatestplus.selenium.WebBrowser
 import util.SingletonDriver
 
 
-trait BasePage extends WebBrowser with Assertion with Matchers {
 
-  implicit val driver: WebDriver = SingletonDriver.getInstance()
+trait BasePage extends WebBrowser with Assertion with Matchers  {
+
+  implicit val poo: WebDriver = SingletonDriver.getInstance()
 
 
   val url: String = ""

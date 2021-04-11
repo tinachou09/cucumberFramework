@@ -1,15 +1,16 @@
 package stepdef
 
+import io.cucumber.datatable.DataTable
 import io.cucumber.java.StepDefinitionAnnotation
-import pages.BasePage
+import pages.{BasePage, Inventorypage, WebPage}
 import io.cucumber.java.en.{And, Given, Then}
+import io.cucumber.messages.Messages.GherkinDocument.Feature.Background
 import org.openqa.selenium.WebElement
 import org.scalatest.Assertion
-import pages.Inventorypage
 
 
 @StepDefinitionAnnotation
-class loginStep extends  BasePage {
+class loginStep extends  BaseSteps {
 
   //the reason that need to import cucumber java.en is because  dependency mismatches (Cucumber - Content Assistance in Feature file not working)
 
@@ -44,10 +45,10 @@ class loginStep extends  BasePage {
 
   //regular expression -known as regex
   @Then("""^It landed on the '([^\"]*)' page$""")
-  def LandThepage(page: String): Assertion = {
+  def LandThePage(page: String): Assertion = {
     val landingpage: String = page match {
       //class --> new, otherwise page object dont need new
-      case "Inventory" => new Inventorypage().url
+      case "Inventory" => Inventorypage.url
       case _ => throw new Exception(s"Page [${page}] is not found")
     }
 
@@ -82,5 +83,14 @@ class loginStep extends  BasePage {
   }
 
 
+
+  @And("^log in the page via entering the following details$")
+   def loginMethod(table: DataTable) ={
+
+    WebPage.loginStepsTable(table)
+
+
+
+  }
 
 }

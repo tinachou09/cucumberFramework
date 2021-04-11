@@ -12,6 +12,8 @@ Feature: login
    Examples:
     | Product                 | Basket                  |
     | Sauce Labs Bolt T-Shirt | Sauce Labs Bolt T-Shirt |
-    | Sauce Labs Backpack     | Sauce Labs Backpack     |
+#    | Sauce Labs Backpack     | Sauce Labs Backpack     |
+
+
 
 

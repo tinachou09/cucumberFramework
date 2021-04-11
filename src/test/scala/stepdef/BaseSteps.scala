@@ -16,7 +16,7 @@ class BaseSteps extends ScalaDsl with EN with LazyLogging with BasePage  {
   Before {
     def initialise() {
       logger.info("Start running the test")
-      driver.manage().window().maximize()
+      poo.manage().window().maximize()
     }
     initialise()
   }
@@ -36,23 +36,23 @@ class BaseSteps extends ScalaDsl with EN with LazyLogging with BasePage  {
 //  }
 
   After { scenario: Scenario =>
-    def teardown(result: Scenario) {
-
-      //implement a screen capture method
-      if (result.isFailed) {
-        logger.info("fail")
-        //mixing type
-        SingletonDriver.getInstance() match {
-          case adriver: TakesScreenshot with JavascriptExecutor =>
-          takesScreenshot(scenario)(adriver)
-        }
-
-      } else
-        logger.info("pass")
-        quit()
-    }
-
-    teardown(scenario)
+//    def teardown(result: Scenario) {
+//
+//      //implement a screen capture method
+//      if (result.isFailed) {
+//        logger.info("fail")
+//        //mixing type
+//        SingletonDriver.getInstance() match {
+//          case adriver: TakesScreenshot with JavascriptExecutor =>
+//          takesScreenshot(scenario)(adriver)
+//        }
+//
+//      } else
+//        logger.info("pass")
+////        quit()
+//    }
+//
+//    teardown(scenario)
   }
 
 
