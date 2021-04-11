@@ -2,7 +2,7 @@ package stepdef
 
 import io.cucumber.datatable.DataTable
 import io.cucumber.java.StepDefinitionAnnotation
-import pages.{BasePage, Inventorypage, WebPage}
+import pages.{BasePage, InventoryPage, WebPage}
 import io.cucumber.java.en.{And, Given, Then}
 import io.cucumber.messages.Messages.GherkinDocument.Feature.Background
 import org.openqa.selenium.WebElement
@@ -48,7 +48,7 @@ class loginStep extends  BaseSteps {
   def LandThePage(page: String): Assertion = {
     val landingpage: String = page match {
       //class --> new, otherwise page object dont need new
-      case "Inventory" => Inventorypage.url
+      case "Inventory" => InventoryPage.url
       case _ => throw new Exception(s"Page [${page}] is not found")
     }
 

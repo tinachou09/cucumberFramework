@@ -10,7 +10,7 @@ import util.SingletonDriver
 
 trait BasePage extends WebBrowser with Assertion with Matchers  {
 
-  implicit val poo: WebDriver = SingletonDriver.getInstance()
+  implicit val webdriver: WebDriver = SingletonDriver.getInstance()
 
 
   val url: String = ""

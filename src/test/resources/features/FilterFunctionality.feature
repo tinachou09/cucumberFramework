@@ -14,6 +14,10 @@ Feature: Check the filter functionality
     When The user click the 'Name (Z to A)' filter option
     Then The name has been sorted in 'reverse' alphabetical order
 
+  Scenario: Test the price filter with low to high price range
+    When The user click the 'Price (low to high)' filter option
+    Then The name has been sorted in 'reverse' alphabetical order
+
 
 
 

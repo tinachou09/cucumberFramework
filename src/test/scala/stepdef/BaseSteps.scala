@@ -16,7 +16,7 @@ class BaseSteps extends ScalaDsl with EN with LazyLogging with BasePage  {
   Before {
     def initialise() {
       logger.info("Start running the test")
-      poo.manage().window().maximize()
+      webdriver.manage().window().maximize()
     }
     initialise()
   }
